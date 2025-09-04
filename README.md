@@ -36,3 +36,24 @@
 > * 同时拥有“单页版”和“iframe版”的授权
 > * 不同项目自由选择，效率进阶两不误
 > * 永久套餐版可附赠 LayIM 专业开发版
+
+## Docker 部署
+
+本项目支持 Docker 容器化部署，可以快速启动和运行：
+
+```bash
+# 构建镜像
+docker build -t layuiadmin .
+
+# 运行容器
+docker run -d -p 8080:80 layuiadmin
+
+# 使用 docker-compose
+docker compose up -d
+```
+
+访问地址：
+- 专业版：http://localhost:8080/admin/pro/
+- 标准版：http://localhost:8080/admin/std/dist/views/index.html
+
+详细说明请参考 [DOCKER.md](DOCKER.md)
