@@ -1,4 +1,4 @@
-# Go & Docker 构建流水线，推送到 master 分支时自动构建并发布镜像
+# Nginx & Docker 构建流水线，推送到 master 分支时自动构建并发布镜像
 # 详细说明见：https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
 
 name: Go & Docker Build
@@ -43,13 +43,13 @@ jobs:
         with:
           context: .\admin\pro\
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.pro-meta.outputs.tags }}
+          labels: ${{ steps.pro-meta.outputs.labels }}
 
       # 提取 Docker std 镜像元数据
       - name: 提取 Docker std 镜像元数据
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        id: meta
+        id: std-meta
         uses: docker/metadata-action@v5
         with:
           images: ${{ secrets.DOCKER_REGISTRY }}/liuxinhh/layui-admin-std
@@ -63,5 +63,5 @@ jobs:
         with:
           context: .\admin\std\
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.std-meta.outputs.tags }}
+          labels: ${{ steps.std-meta.outputs.labels }}
