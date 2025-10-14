@@ -41,8 +41,8 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: docker/build-push-action@v5
         with:
-          context: .\admin\pro\
-          file: .\admin\pro\Dockerfile  # 同样指向该 Dockerfile
+          context: ./admin/pro
+          file: ./admin/pro/Dockerfile  # 同样指向该 Dockerfile
           push: true
           tags: ${{ steps.pro-meta.outputs.tags }}
           labels: ${{ steps.pro-meta.outputs.labels }}
@@ -62,8 +62,8 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: docker/build-push-action@v5
         with:
-          context: .\admin\std\
-          file: .\admin\std\Dockerfile  # 同样指向该 Dockerfile
+          context: ./admin/std
+          file: ./admin/std/Dockerfile  # 同样指向该 Dockerfile
           push: true
           tags: ${{ steps.std-meta.outputs.tags }}
           labels: ${{ steps.std-meta.outputs.labels }}
